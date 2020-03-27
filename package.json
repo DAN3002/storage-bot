@@ -1,0 +1,19 @@
+{
+  "name": "storage-bot",
+  "version": "1.0.0",
+  "description": "CLI tool to upload file to cloud firebase storage",
+  "main": "src/index.js",
+  "bin": "src/index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DAN3002/storage-bot.git"
+  },
+  "keywords": [],
+  "author": "dan_3002",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DAN3002/storage-bot/issues"
+  },
+  "homepage": "https://github.com/DAN3002/storage-bot#readme"
+}

@@ -1,11 +1,7 @@
 const storage = require('../models/storage.js');
 
 exports.listFiles = async function() {
-   let files;
-   await storage.listFiles()
-   .then(res => {
-      files = res;
-   });
+   let files = await storage.listFiles();
    files = files.map(el => {
       return {
          name: el.name,

@@ -1,27 +1,18 @@
-#! /usr/bin/env node
-const admin = require('firebase-admin');
-const serviceAccount = require('../config/serviceAccountKey.json');
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://funix-onpage.firebaseio.com"
-});
-
-const upload = require('./libs/upload.js').upload;
-const listFiles = require('./libs/listFiles.js').listFiles;
-
+#!/usr/bin/env node
+const checkAccount = require('./libs/checkAccount.js').checkAccount;
+const init = require('./libs/initAccount.js').init;
 const args = process.argv.slice(2);
 
-switch(args[0])
+if(args[0] != 'init')
 {
-   case 'upload': {
-      upload(args.slice(1));
-      break;
+   if(!checkAccount())
+   {
+      console.log("Not init account!");
+      console.log("Run storage-bot init");
+      process.exit();
    }
-   case 'ls': {
-      listFiles();
-      break;
-   }
-   default: {
-      console.log("Missing param!");
-   }
+   require('./authMethod.js').run(args);
+} else {
+   init(args.slice(1));
 }
+

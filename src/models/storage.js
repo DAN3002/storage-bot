@@ -5,8 +5,6 @@ const config = require('../../config/serviceAccountKey.json');
 const bucket = admin.storage().bucket(config.project_id + ".appspot.com");
 
 exports.uploadFile = async function(path, cloudPath) {
-   cloudPath = cloudPath ? cloudPath : path;
-
    const options = {
       destination: cloudPath,
       resumable: true,
@@ -24,10 +22,18 @@ exports.uploadFile = async function(path, cloudPath) {
 };
 
 exports.listFiles = async function() {
-   let files = [];
-   await bucket.getFiles()
-   .then(res => {
-      files = res[0];
-   });
-   return files;
+   return (await bucket.getFiles())[0];
 };
+
+exports.getFile = function(path) {
+   return bucket.file(path);
+}
+
+exports.isExistFile = async function(file) {
+   return (await file.exists())[0];
+}
+
+exports.removeFile = async function(file)
+{
+   return file.delete();
+}

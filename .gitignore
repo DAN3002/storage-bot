@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment & secrets — NEVER commit these
+.env
+.env.*
+config/serviceAccountKey.json
+*serviceAccountKey*.json
+*serviceAccount*.json
+*credentials*.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
